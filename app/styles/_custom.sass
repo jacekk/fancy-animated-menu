@@ -1,0 +1,90 @@
+$size: 38px
+$half: $size / 2
+
+$col: #89175C
+$h-col: lighten($col, 12%)
+
+// $col: #800
+// $h-col: #080
+
+=trans($prop)
+  transition: $prop 0.25s linear
+
+.header
+  border: none
+
+.nav.nav-pills
+  border: none
+  li
+    @for $i from 1 through 6
+      &:nth-child(#{$i})
+        z-index: 100 - $i
+    padding: 0
+    background: $col
+    +trans(background)
+    margin: 0 $half 0 $half
+    margin: 0 ($half/2 + 2px)
+    &:before
+      display: block
+      content: ''
+      position: absolute
+      top: 0
+      left: - $half
+      height: 0
+      width: 0
+      border: transparent solid $half
+      border-top-color: $col
+      border-bottom-color: $col
+      +trans(border)
+    &:after
+      display: block
+      content: ''
+      width: 0
+      height: 0
+      position: absolute
+      top: 0
+      right: -$size
+      border: transparent solid $half
+      border-left-color: $col
+      +trans(border)
+    a
+      margin: 0
+      background: transparent
+      color: #fff
+      border-radius: 0
+      padding: 0 20px
+      font-weight: bold
+      font-size: 16px
+      display: block
+      text-transform: uppercase
+      height: $size
+      line-height: $size
+      outline: none
+      +trans(padding)
+      &:hover
+        background: transparent
+    a:after
+      content: ''
+      display: block
+      height: $size
+      width: 64px
+      position: absolute
+      top: 0
+      left: -$half - 5px
+      background: transparent url(../images/active-li-mask.png) center center no-repeat
+      opacity: 0
+      +trans(opacity)
+  li.active
+    a
+      background: transparent
+      padding-left: 50px
+    a:after
+      opacity: 1
+  li:hover
+    background: $h-col
+    &:before
+      border-top-color: $h-col
+      border-bottom-color: $h-col
+    &:after
+      border-left-color: $h-col
+
